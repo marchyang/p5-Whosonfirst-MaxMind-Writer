@@ -22,20 +22,21 @@ sub new {
     my $pkg = shift;
     my $db_file = shift;
 
-    # Move MaxMind DB object constructure stuff in here?
+
+    # continent_name,wof_id,country_iso_code,subdivision_1_name,continent_code,metro_code,geoname_id,locale_code,time_zone,subdivision_2_iso_code,country_name,city_name,subdivision_2_name,subdivision_1_iso_code
 
     my %types = (
-	color => 'utf8_string',
-	dogs  => [ 'array', 'utf8_string' ],
-	size  => 'uint16',
+	# color => 'utf8_string',
+	# dogs  => [ 'array', 'utf8_string' ],
+	# size  => 'uint16',
 	);
     
     my $tree = MaxMind::DB::Writer::Tree->new(
 	ip_version            => 6,
 	record_size           => 24,
-	database_type         => 'My-IP-Data',
+	database_type         => "Who's On First IP Data",
 	languages             => ['en'],
-	description           => { en => 'My database of IP data' },
+	description           => { en => "Who's On First database of IP data" },
 	map_key_type_callback => sub { $types{ $_[0] } },
 	);
 
