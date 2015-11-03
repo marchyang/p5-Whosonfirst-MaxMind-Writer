@@ -3,6 +3,8 @@ use warnings;
 
 use utf8;
 
+use Text::CSV_XS;
+
 use MaxMind::DB::Writer::Tree;
 use Net::Works::Network;
 
@@ -17,6 +19,47 @@ package Whosonfirst::MaxMind::Writer;
 =cut
 
 sub new {
+    my $pkg = shift;
+    my $cfg = shift;
+
+    # Move MaxMind DB object constructure stuff in here?
+
+    my $self = {};
+        
+    bless $self,$pkg;
+    return $self;
+}
+
+=head1 OBJECT METHODS
+
+=cut
+
+=head2 $obj->publish_csv_file($csv_file, $db_file)
+
+=cut
+
+sub publish_csv_file {
+    my $self = shift;
+    my $csv_file = shift;
+    my $db_file = shift;
+
+    my $csv = Text::CSV_XS->new ({ binary => 1, auto_diag => 1 });
+
+    # please do not die
+
+    open my $csv_fh, "<:encoding(utf8)", $csv_file
+	or die $!;
+
+    while (my $row = $csv->getline ($fh)){
+
+    }
+
+    close $csv_fh;
+
+    open my $db_fh, '>:raw', $db_file;
+    $tree->write_tree($db_fh);
+
+    close $dh_fh;
 
 }
 
