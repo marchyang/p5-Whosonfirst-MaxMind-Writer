@@ -1,0 +1,250 @@
+wof_id,locale_code,country_iso_code,continent_code,geoname_id,country_name,continent_name
+85632303,en,RW,AF,49518,Rwanda,Africa
+85632379,en,SO,AF,51537,Somalia,Africa
+85632499,en,YE,AS,69543,Yemen,Asia
+85632191,en,IQ,AS,99237,Iraq,Asia
+85632253,en,SA,AS,102358,Saudi Arabia,Asia
+85632361,en,IR,AS,130758,Iran,Asia
+85632437,en,CY,EU,146669,Cyprus,Europe
+85632227,en,TZ,AF,149590,Tanzania,Africa
+85632413,en,SY,AS,163843,Syria,Asia
+85632773,en,AM,AS,174982,Armenia,Asia
+85632329,en,KE,AF,192950,Kenya,Africa
+85632643,en,CD,AF,203312,Congo,Africa
+85632319,en,DJ,AF,223816,Djibouti,Africa
+85632625,en,UG,AF,226074,Uganda,Africa
+85632391,en,CF,AF,239880,Central African Republic,Africa
+85632661,en,SC,AF,241170,Seychelles,Africa
+85632425,en,JO,AS,248816,Hashemite Kingdom of Jordan,Asia
+85632533,en,LB,AS,272103,Lebanon,Asia
+85632401,en,KW,AS,285570,Kuwait,Asia
+85632207,en,OM,AS,286963,Oman,Asia
+85632299,en,QA,AS,289688,Qatar,Asia
+85632167,en,BH,AS,290291,Bahrain,Asia
+85632573,en,AE,AS,290557,United Arab Emirates,Asia
+85632315,en,IL,AS,294640,Israel,Asia
+85632393,en,TR,AS,298795,Turkey,Asia
+85632257,en,ET,AF,337996,Ethiopia,Africa
+85632781,en,ER,AF,338010,Eritrea,Africa
+85632581,en,EG,AF,357994,Egypt,Africa
+85632751,en,SD,AF,366755,Sudan,Africa
+85633171,en,GR,EU,390903,Greece,Europe
+85632285,en,BI,AF,433561,Burundi,Africa
+85633135,en,EE,EU,453733,Estonia,Europe
+85633279,en,LV,EU,458258,Latvia,Europe
+85632717,en,AZ,AS,587116,Azerbaijan,Asia
+85633269,en,LT,EU,597427,Republic of Lithuania,Europe
+85675539,en,SJ,EU,607072,Svalbard and Jan Mayen,Europe
+85633163,en,GE,AS,614540,Georgia,Asia
+85633287,en,MD,EU,617790,Republic of Moldova,Europe
+85632395,en,BY,EU,630336,Belarus,Europe
+85633143,en,FI,EU,660013,Finland,Europe
+85632789,en,AX,EU,661882,Åland,Europe
+85633805,en,UA,EU,690791,Ukraine,Europe
+85632373,en,MK,EU,718075,Macedonia,Europe
+85633237,en,HU,EU,719819,Hungary,Europe
+85633001,en,BG,EU,732800,Bulgaria,Europe
+85632405,en,AL,EU,783754,Albania,Europe
+85633723,en,PL,EU,798544,Poland,Europe
+85633745,en,RO,EU,798549,Romania,Europe
+85633259,en,XK,EU,831053,Kosovo,Europe
+85632243,en,ZW,AF,878675,Zimbabwe,Africa
+85632559,en,ZM,AF,895949,Zambia,Africa
+85632259,en,KM,AF,921929,Comoros,Africa
+85632383,en,MW,AF,927384,Malawi,Africa
+85632173,en,LS,AF,932692,Lesotho,Africa
+85632235,en,BW,AF,933860,Botswana,Africa
+85632357,en,MU,AF,934292,Mauritius,Africa
+85632635,en,SZ,AF,934841,Swaziland,Africa
+85632351,en,RE,AF,935317,Réunion,Africa
+85633813,en,ZA,AF,953987,South Africa,Africa
+85632523,en,YT,AF,1024031,Mayotte,Africa
+85632729,en,MZ,AF,1036973,Mozambique,Africa
+85632223,en,MG,AF,1062947,Madagascar,Africa
+85632229,en,AF,AS,1149361,Afghanistan,Asia
+85632659,en,PK,AS,1168579,Pakistan,Asia
+85632475,en,BD,AS,1210997,Bangladesh,Asia
+85632671,en,TM,AS,1218197,Turkmenistan,Asia
+85632513,en,TJ,AS,1220409,Tajikistan,Asia
+85632313,en,LK,AS,1227603,Sri Lanka,Asia
+85632171,en,BT,AS,1252634,Bhutan,Asia
+85632469,en,IN,AS,1269750,India,Asia
+85632305,en,MV,AS,1282028,Maldives,Asia
+85632459,en,IO,AS,1282588,British Indian Ocean Territory,Asia
+85632465,en,NP,AS,1282988,Nepal,Asia
+85632181,en,MM,AS,1327865,Myanmar [Burma],Asia
+85632645,en,UZ,AS,1512440,Uzbekistan,Asia
+85632307,en,KZ,AS,1522867,Kazakhstan,Asia
+85632761,en,KG,AS,1527747,Kyrgyzstan,Asia
+0,en,TF,AN,1546748,French Southern Territories,Antarctica
+85632495,en,CC,AS,1547376,Cocos [Keeling] Islands,Asia
+85632331,en,PW,OC,1559582,Palau,Oceania
+85632763,en,VN,AS,1562822,Vietnam,Asia
+102024719,en,TH,AS,1605651,Thailand,Asia
+102020465,en,ID,AS,1643084,Indonesia,Asia
+85632241,en,LA,AS,1655842,Laos,Asia
+85632403,en,TW,AS,1668284,Taiwan,Asia
+85632509,en,PH,AS,1694008,Philippines,Asia
+102022867,en,MY,AS,1733045,Malaysia,Asia
+102027695,en,CN,AS,1814991,China,Asia
+85632483,en,HK,AS,1819730,Hong Kong,Asia
+85632749,en,BN,AS,1820814,Brunei,Asia
+85632161,en,MO,AS,1821275,Macao,Asia
+85632359,en,KH,AS,1831722,Cambodia,Asia
+85632231,en,KR,AS,1835841,Republic of Korea,Asia
+85632429,en,JP,AS,1861060,Japan,Asia
+85632639,en,KP,AS,1873107,North Korea,Asia
+85632605,en,SG,AS,1880251,Singapore,Asia
+85632481,en,CK,OC,1899402,Cook Islands,Oceania
+85632583,en,TL,OC,1966436,East Timor,Oceania
+85632685,en,RU,EU,2017370,Russia,Europe
+85632439,en,MN,AS,2029969,Mongolia,Asia
+85632793,en,AU,OC,2077456,Australia,Oceania
+85632497,en,CX,AS,2078138,Christmas Island,Asia
+85632663,en,MH,OC,2080185,Marshall Islands,Oceania
+85632431,en,FM,OC,2081918,Federated States of Micronesia,Oceania
+85632347,en,PG,OC,2088628,Papua New Guinea,Oceania
+85632591,en,SB,OC,2103350,Solomon Islands,Oceania
+85632607,en,TV,OC,2110297,Tuvalu,Oceania
+85632747,en,NR,OC,2110425,Nauru,Oceania
+85632263,en,VU,OC,2134431,Vanuatu,Oceania
+0,en,NC,OC,2139685,New Caledonia,Oceania
+0,en,NF,OC,2155115,Norfolk Island,Oceania
+85633345,en,NZ,OC,2186224,New Zealand,Oceania
+85632755,en,FJ,OC,2205218,Fiji,Oceania
+85632627,en,LY,AF,2215636,Libya,Africa
+85632245,en,CM,AF,2233387,Cameroon,Africa
+85632365,en,SN,AF,2245662,Senegal,Africa
+85632541,en,CG,AF,2260494,Republic of the Congo,Africa
+85633735,en,PT,EU,2264397,Portugal,Europe
+85632249,en,LR,AF,2275384,Liberia,Africa
+85632449,en,CI,AF,2287781,Ivory Coast,Africa
+85632189,en,GH,AF,2300660,Ghana,Africa
+85632287,en,GQ,AF,2309096,Equatorial Guinea,Africa
+85632735,en,NG,AF,2328926,Nigeria,Africa
+85632213,en,BF,AF,2361809,Burkina Faso,Africa
+85632647,en,TG,AF,2363686,Togo,Africa
+85632757,en,GW,AF,2372248,Guinea-Bissau,Africa
+85632679,en,MR,AF,2378080,Mauritania,Africa
+85632247,en,BJ,AF,2395170,Benin,Africa
+85632407,en,GA,AF,2400553,Gabon,Africa
+85632467,en,SL,AF,2403846,Sierra Leone,Africa
+85632765,en,ST,AF,2410758,São Tomé and Príncipe,Africa
+0,en,GI,EU,2411586,Gibraltar,Europe
+85632603,en,GM,AF,2413451,Gambia,Africa
+85632691,en,GN,AF,2420477,Guinea,Africa
+85632325,en,TD,AF,2434508,Chad,Africa
+85632269,en,NE,AF,2440476,Niger,Africa
+85632553,en,ML,AF,2453866,Mali,Africa
+85632703,en,TN,AF,2464461,Tunisia,Africa
+85633129,en,ES,EU,2510769,Spain,Europe
+85632693,en,MA,AF,2542007,Morocco,Africa
+85633331,en,MT,EU,2562770,Malta,Europe
+85632451,en,DZ,AF,2589581,Algeria,Africa
+0,en,FO,EU,2622320,Faroe Islands,Europe
+85633121,en,DK,EU,2623032,Denmark,Europe
+85633249,en,IS,EU,2629691,Iceland,Europe
+85633159,en,GB,EU,2635167,United Kingdom,Europe
+85633051,en,CH,EU,2658434,Switzerland,Europe
+85633789,en,SE,EU,2661886,Sweden,Europe
+85633337,en,NL,EU,2750405,Netherlands,Europe
+85632785,en,AT,EU,2782113,Austria,Europe
+85632997,en,BE,EU,2802361,Belgium,Europe
+85633111,en,DE,EU,2921044,Germany,Europe
+85633275,en,LU,EU,2960313,Luxembourg,Europe
+85633241,en,IE,EU,2963597,Ireland,Europe
+85633285,en,MC,EU,2993457,Monaco,Europe
+85633147,en,FR,EU,3017382,France,Europe
+85632343,en,AD,EU,3041565,Andorra,Europe
+85633267,en,LI,EU,3042058,Liechtenstein,Europe
+85632593,en,JE,EU,3042142,Jersey,Europe
+85632461,en,IM,EU,3042225,Isle of Man,Europe
+85632547,en,GG,EU,3042362,Guernsey,Europe
+85633769,en,SK,EU,3057568,Slovak Republic,Europe
+85633105,en,CZ,EU,3077311,Czech Republic,Europe
+85633341,en,NO,EU,3144096,Norway,Europe
+85632187,en,VA,EU,3164670,Vatican City,Europe
+85633763,en,SM,EU,3168068,San Marino,Europe
+85633253,en,IT,EU,3175395,Italy,Europe
+85633779,en,SI,EU,3190538,Slovenia,Europe
+85632667,en,ME,EU,3194884,Montenegro,Europe
+85633229,en,HR,EU,3202326,Croatia,Europe
+85632609,en,BA,EU,3277605,Bosnia and Herzegovina,Europe
+85632281,en,AO,AF,3351879,Angola,Africa
+85632535,en,NA,AF,3355338,Namibia,Africa
+0,en,SH,AF,3370751,Saint Helena,Africa
+85632491,en,BB,NA,3374084,Barbados,North America
+85632721,en,CV,AF,3374766,Cape Verde,Africa
+85632397,en,GY,SA,3378535,Guyana,South America
+85632233,en,GF,SA,3381670,French Guiana,South America
+85632443,en,SR,SA,3382998,Suriname,South America
+85632371,en,PM,NA,3424932,Saint Pierre and Miquelon,North America
+85633217,en,GL,NA,3425505,Greenland,North America
+85632355,en,PY,SA,3437598,Paraguay,South America
+85632511,en,UY,SA,3439705,Uruguay,South America
+85633009,en,BR,SA,3469034,Brazil,South America
+0,en,FK,SA,3474414,Falkland Islands,South America
+0,en,GS,AN,3474415,South Georgia and the South Sandwich Islands,Antarctica
+85632215,en,JM,NA,3489940,Jamaica,North America
+85632713,en,DO,NA,3508796,Dominican Republic,North America
+85632675,en,CU,NA,3562981,Cuba,North America
+85632531,en,MQ,NA,3570311,Martinique,North America
+85632339,en,BS,NA,3572887,Bahamas,North America
+0,en,BM,NA,3573345,Bermuda,North America
+0,en,AI,NA,3573511,Anguilla,North America
+85632271,en,TT,NA,3573591,Trinidad and Tobago,North America
+85632551,en,KN,NA,3575174,Saint Kitts and Nevis,North America
+85632503,en,DM,NA,3575830,Dominica,North America
+85632529,en,AG,NA,3576396,Antigua and Barbuda,North America
+85632369,en,LC,NA,3576468,Saint Lucia,North America
+0,en,TC,NA,3576916,Turks and Caicos Islands,North America
+85632295,en,AW,NA,3577279,Aruba,North America
+0,en,VG,NA,3577718,British Virgin Islands,North America
+85632569,en,VC,NA,3577815,Saint Vincent and the Grenadines,North America
+0,en,MS,NA,3578097,Montserrat,North America
+0,en,MF,NA,3578421,Saint Martin,North America
+0,en,BL,NA,3578476,Saint-Barthélemy,North America
+85632423,en,GP,NA,3579143,Guadeloupe,North America
+85632335,en,GD,NA,3580239,Grenada,North America
+0,en,KY,NA,3580718,Cayman Islands,North America
+85632571,en,BZ,NA,3582678,Belize,North America
+85632545,en,SV,NA,3585968,El Salvador,North America
+85632385,en,GT,NA,3595528,Guatemala,North America
+85632323,en,HN,NA,3608932,Honduras,North America
+85632599,en,NI,NA,3617476,Nicaragua,North America
+85632487,en,CR,NA,3624060,Costa Rica,North America
+85632317,en,VE,SA,3625428,Venezuela,South America
+85632261,en,EC,SA,3658394,Ecuador,South America
+85632519,en,CO,SA,3686110,Colombia,South America
+85632179,en,PA,NA,3703430,Panama,North America
+85632433,en,HT,NA,3723988,Haiti,North America
+85632505,en,AR,SA,3865483,Argentina,South America
+102017831,en,CL,SA,3895114,Chile,South America
+85632623,en,BO,SA,3923057,Bolivia,South America
+85632521,en,PE,SA,3932488,Peru,South America
+85633293,en,MX,NA,3996063,Mexico,North America
+0,en,PF,OC,4030656,French Polynesia,Oceania
+0,en,PN,OC,4030699,Pitcairn Islands,Oceania
+85632709,en,KI,OC,4030945,Kiribati,Oceania
+0,en,TK,OC,4031074,Tokelau,Oceania
+85632455,en,TO,OC,4032283,Tonga,Oceania
+0,en,WF,OC,4034749,Wallis and Futuna,Oceania
+85632681,en,WS,OC,4034894,Samoa,Oceania
+0,en,NU,OC,4036232,Niue,Oceania
+0,en,MP,OC,4041468,Northern Mariana Islands,Oceania
+0,en,GU,OC,4043988,Guam,Oceania
+0,en,PR,NA,4566966,Puerto Rico,North America
+0,en,VI,NA,4796775,U.S. Virgin Islands,North America
+0,en,UM,OC,5854968,U.S. Minor Outlying Islands,Oceania
+0,en,AS,OC,5880801,American Samoa,Oceania
+85633041,en,CA,NA,6251999,Canada,North America
+85633793,en,US,NA,6252001,United States,North America
+85633739,en,PS,AS,6254930,Palestine,Asia
+102191569,en,,AS,6255147,,Asia
+102191581,en,,EU,6255148,,Europe
+85633755,en,RS,EU,6290252,Serbia,Europe
+85632715,en,AQ,AN,6697173,Antarctica,Antarctica
+85632185,en,SX,NA,7609695,Sint Maarten,North America
+85632441,en,CW,NA,7626836,Curaçao,North America
+0,en,BQ,NA,7626844,"Bonaire, Sint Eustatius, and Saba",North America
+85632657,en,SS,AF,7909807,South Sudan,Africa
