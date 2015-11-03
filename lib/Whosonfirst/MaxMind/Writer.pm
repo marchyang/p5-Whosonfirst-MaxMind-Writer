@@ -40,16 +40,14 @@ sub new {
 	map_key_type_callback => sub { $types{ $_[0] } },
 	);
 
-    # What?
+    # please don't die...
 
-    my $network = Net::Works::Network->new_from_string( string => '2001:db8::/48' );
-
-    open my $db_fh, '>:raw', $db_file;
+    open my $db_fh, '>:raw', $db_file
+	or die $!;
 
     my $self = {
 	'tree' => $tree,
 	'network' => $network,
-	'db_file' => $db_file,
 	'db_fh' => $db_fh
     };
         
@@ -82,8 +80,12 @@ sub publish_csv_file {
 	my %data = (
 
 	    );
+
+	# What?
 	
-	$self->{'tree'}->insert_network($self->{'network'}, \%data);
+	my $network = Net::Works::Network->new_from_string( string => "please read from Blocks.csv" );
+	
+	$self->{'tree'}->insert_network($network, \%data);
     }
 
     close $csv_fh;
