@@ -14,17 +14,43 @@ package Whosonfirst::MaxMind::Writer;
 
 =cut
 
-=head2 __PACKAGE__->new($cfg)
+=head2 __PACKAGE__->new($db_file)
 
 =cut
 
 sub new {
     my $pkg = shift;
-    my $cfg = shift;
+    my $db_file = shift;
 
     # Move MaxMind DB object constructure stuff in here?
 
-    my $self = {};
+    my %types = (
+	color => 'utf8_string',
+	dogs  => [ 'array', 'utf8_string' ],
+	size  => 'uint16',
+	);
+    
+    my $tree = MaxMind::DB::Writer::Tree->new(
+	ip_version            => 6,
+	record_size           => 24,
+	database_type         => 'My-IP-Data',
+	languages             => ['en'],
+	description           => { en => 'My database of IP data' },
+	map_key_type_callback => sub { $types{ $_[0] } },
+	);
+
+    # What?
+
+    my $network = Net::Works::Network->new_from_string( string => '2001:db8::/48' );
+
+    open my $db_fh, '>:raw', $db_file;
+
+    my $self = {
+	'tree' => $tree,
+	'network' => $network,
+	'db_file' => $db_file,
+	'db_fh' => $db_fh
+    };
         
     bless $self,$pkg;
     return $self;
@@ -52,15 +78,16 @@ sub publish_csv_file {
 
     while (my $row = $csv->getline ($fh)){
 
+	my %data = (
+
+	    );
+	
+	$self->{'tree'}->insert_network($self->{'network'}, \%data);
     }
 
     close $csv_fh;
 
-    open my $db_fh, '>:raw', $db_file;
-    $tree->write_tree($db_fh);
-
-    close $dh_fh;
-
+    $self->{'tree'}->write_tree($self->{'db_fh'});
 }
 
 =head1 VERSION
