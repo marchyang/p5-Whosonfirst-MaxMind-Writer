@@ -3,6 +3,18 @@ use warnings;
 
 use utf8;
 
+# namespace::autoclean
+# Math::Int64
+# Math::Int128
+# MaxMind::DB::Common
+# Data::IEEE754
+# Digest::SHA1
+# Sereal::Encoder
+# Moose
+# MooseX::StrictConstructor
+# MooseX::Params::Validate
+# Net::Works
+
 use Text::CSV_XS;
 
 use MaxMind::DB::Writer::Tree;
@@ -21,7 +33,6 @@ package Whosonfirst::MaxMind::Writer;
 sub new {
     my $pkg = shift;
     my $db_file = shift;
-
 
     # continent_name,wof_id,country_iso_code,subdivision_1_name,continent_code,metro_code,geoname_id,locale_code,time_zone,subdivision_2_iso_code,country_name,city_name,subdivision_2_name,subdivision_1_iso_code
 
@@ -52,7 +63,6 @@ sub new {
 
     my $self = {
 	'tree' => $tree,
-	'network' => $network,
 	'db_fh' => $db_fh
     };
         
@@ -80,7 +90,7 @@ sub publish {
     open my $csv_fh, "<:encoding(utf8)", $csv_file
 	or die $!;
 
-    while (my $row = $csv->getline ($fh)){
+    while (my $row = $csv->getline ($csv_fh)){
 
 	# See notes above in new
 
@@ -89,7 +99,7 @@ sub publish {
 	    # wof_name => "",
 	    );
 
-	my $str_network = $row->{'network'}
+	my $str_network = $row->{'network'};
 	my $network = Net::Works::Network->new_from_string( string => $str_network );
 	
 	$self->{'tree'}->insert_network($network, \%data);
