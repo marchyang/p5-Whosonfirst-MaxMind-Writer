@@ -26,9 +26,14 @@ sub new {
     # continent_name,wof_id,country_iso_code,subdivision_1_name,continent_code,metro_code,geoname_id,locale_code,time_zone,subdivision_2_iso_code,country_name,city_name,subdivision_2_name,subdivision_1_iso_code
 
     my %types = (
-	# color => 'utf8_string',
-	# dogs  => [ 'array', 'utf8_string' ],
-	# size  => 'uint16',
+	wof_name => 'utf8_string',
+	wof_id => 'uint64',
+	
+	geoname_id => 'unit32',
+	locale_code => 'utf8_string',
+	continent_code => 'utf8_string',
+	continent_name => 'utf8_string',
+	country_name => 'utf8_string',
 	);
     
     my $tree = MaxMind::DB::Writer::Tree->new(
@@ -59,11 +64,11 @@ sub new {
 
 =cut
 
-=head2 $obj->publish_csv_file($csv_file, $db_file)
+=head2 $obj->publish($csv_file, $db_file)
 
 =cut
 
-sub publish_csv_file {
+sub publish {
     my $self = shift;
     my $csv_file = shift;
     my $db_file = shift;
@@ -77,13 +82,15 @@ sub publish_csv_file {
 
     while (my $row = $csv->getline ($fh)){
 
-	my %data = (
+	# See notes above in new
 
+	my %data = (
+	    wof_id => $row->{'wof_id'},
+	    # wof_name => "",
 	    );
 
-	# What?
-	
-	my $network = Net::Works::Network->new_from_string( string => "please read from Blocks.csv" );
+	my $str_network = $row->{'network'}
+	my $network = Net::Works::Network->new_from_string( string => $str_network );
 	
 	$self->{'tree'}->insert_network($network, \%data);
     }
