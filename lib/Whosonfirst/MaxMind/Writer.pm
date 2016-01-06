@@ -32,7 +32,6 @@ package Whosonfirst::MaxMind::Writer;
 
 sub new {
     my $pkg = shift;
-    my $db_file = shift;
 
     # continent_name,wof_id,country_iso_code,subdivision_1_name,continent_code,metro_code,geoname_id,locale_code,time_zone,subdivision_2_iso_code,country_name,city_name,subdivision_2_name,subdivision_1_iso_code
 
@@ -56,14 +55,8 @@ sub new {
 	map_key_type_callback => sub { $types{ $_[0] } },
 	);
 
-    # please don't die...
-
-    open my $db_fh, '>:raw', $db_file
-	or die $!;
-
     my $self = {
 	'tree' => $tree,
-	'db_fh' => $db_fh
     };
         
     bless $self,$pkg;
@@ -91,6 +84,9 @@ sub publish {
 	or die $!;
 
     while (my $row = $csv->getline ($csv_fh)){
+
+	use Data::Dumper;
+	print Data::Dumper::Dumper($row);
 
 	# See notes above in new
 
