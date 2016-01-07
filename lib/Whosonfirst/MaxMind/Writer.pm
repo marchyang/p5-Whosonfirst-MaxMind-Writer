@@ -157,6 +157,32 @@ return 1;
 
 __END__
 
+# in-progress types maps the standard (free) GeoIP databases...
+# note the inclusion of whosonfirst_id
+
+    my %types = (
+	'country' => 'map',
+	'continent' => 'map',
+	'continent_code' => 'utf8_string',
+	'code' => 'utf8_string',
+	'geoname_id' => 'uint32',
+	'iso_code' => 'utf8_string',
+	'location' => 'map',
+	'latitude' => 'double',
+	'longitude' => 'double',
+	'names' => 'map',
+	'traits' => 'map',	# ?????
+	'registered_country' => 'map',
+	'subdivisions' => [ 'array', 'map' ],
+	'time_zone' => 'utf8_string',
+	'whosonfirst_id' => 'uint64',
+	'is_satellite_provider' => 'boolean',
+	'is_anonymous_proxy' => 'boolean'
+    );
+
+
+# stub/proof-of-concept code to build a WOF specific mmdb
+
 #!/usr/bin/env perl
 
 use strict;
