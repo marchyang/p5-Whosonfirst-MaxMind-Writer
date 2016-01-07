@@ -154,3 +154,223 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 =cut
 
 return 1;
+
+__END__
+
+#!/usr/bin/env perl
+
+use strict;
+use JSON::XS;
+use Text::CSV_XS;
+use LWP::Simple;
+use Data::Dumper;
+use Memoize;
+use File::Slurp;
+
+use MaxMind::DB::Writer::Tree;
+use Net::Works::Network;
+
+memoize('concordance', 'props');
+
+{
+    &main();
+    exit();
+}
+
+sub main {
+
+    # https://metacpan.org/pod/MaxMind::DB::Writer::Tree#DATA-TYPES
+
+    my %types = (
+	'whosonfirst_id' => 'uint64',
+	'geoname_id' => 'uint64',
+	'name' => 'utf8_string',
+	'placetype' => 'utf8_string',
+	'neighbourhood_id' => 'uint64',
+	'locality_id' => 'uint64',
+	'localadmin_id' => 'uint64',
+	'region_id' => 'uint64',
+	'macroregion_id' => 'uint64',
+	'disputed_id' => 'uint64',
+	'country_id' => 'uint64',
+	'continent_id' => 'uint64',
+	'mm_latitude' => 'double',
+	'mm_longitude' => 'double',
+	'geom_latitude' => 'double',
+	'geom_longitude' => 'double',
+	'geom_bbox' => 'utf8_string',
+	'lbl_latitude' => 'double',
+	'lbl_longitude' => 'double',
+    );
+
+    my $tree = MaxMind::DB::Writer::Tree->new(
+	database_type => "WOF",
+	description => { en => 'WOF' },
+	ip_version => 4,
+	map_key_type_callback => sub { $types{ $_[0] } },
+	merge_record_collisions => 1,
+	record_size => 24,
+	);
+
+    my $csv = "/usr/local/mapzen/maxmind-data/GeoLite2-City-CSV_20150901/GeoLite2-City-Blocks-IPv4.csv";
+    my $reader = Text::CSV_XS::csv(in => $csv, headers => "auto");
+
+    my @placetypes = ("locality", "localadmin", "region", "macroregion", "disputed", "country", "continent");
+
+    my $counter = 0;
+
+    foreach my $row (@$reader){
+
+	$counter += 1;
+
+	my $net = $row->{'network'};
+	my $network = Net::Works::Network->new_from_string('string' => $net);
+
+	my $gnid = $row->{'geoname_id'};
+
+	my $lat = $row->{'latitude'};
+	my $lon = $row->{'longitude'};
+
+	my $wof_id = -1;
+
+	foreach my $t (@placetypes){
+	    $wof_id = reversegeo($t, $lat, $lon);
+
+	    if ($wof_id != -1){
+		last;
+	    }
+	}
+
+	if ($wof_id == -1){
+	    print "MISSING AFTER REVERSEGEO\n";
+	    $wof_id = concordance($gnid);
+	}
+
+	if ($wof_id == -1){
+	    print "MISSING AFTER CONCORDANCE\n";
+
+	    my %meta = (
+		'geoname_id' => $gnid,
+		'whosonfirst_id' => 0,
+		);
+	    
+	    $tree->insert_network( $network, \%meta);
+	    next;
+	}
+
+	#
+
+	my $props = props($wof_id);
+
+	my $hiers = $props->{'wof:hierarchy'};
+
+	foreach my $h (@$hiers){
+
+	    my $pt = $props->{'wof:placetype'};
+	    my $id = $props->{'wof:id'};
+
+	    my %meta = (
+		'geoname_id' => $gnid,
+		'whosonfirst_id' => $id,
+		'name' => $props->{'wof:name'} || "Un-named $pt #$id",
+		'placetype' => $pt,
+		'mm_latitude' => $lat,
+		'mm_longitude' => $lon,
+		'geom_bbox' => $props->{'geom:bbox'},
+		'geom_latitude' => $props->{'geom:latitude'},
+		'geom_longitude' => $props->{'geom:longitude'},
+		);
+
+	    if (($props->{'lbl:latitude'}) && ($props->{'lbl:longitude'})){
+		$meta{'lbl_latitude'} = $props->{'lbl:latitude'},
+		$meta{'lbl_longitude'} => $props->{'lbl:longitude'},		
+	    }
+
+	    foreach my $t (@placetypes){
+
+		my $k = $t . "_id";
+		my $v = $h->{$k} || 0;
+
+		if ($v == -1){
+		    $v = 0;	# grrrrnnn
+		}
+
+		$meta{$k} = $v;
+	    }
+	    
+	    $tree->insert_network( $network, \%meta);
+	}
+
+	if ($counter == 100000){
+	    last;
+	}
+
+    }
+
+    my $filename = "wof-csv.mmdb";
+
+    open my $fh, '>:raw', $filename;
+    $tree->write_tree( $fh );
+    close $fh;
+}
+
+sub props {
+    my $wof_id = shift;
+
+    my $tmp = $wof_id;
+    my @parts = ();
+
+    while (length($tmp)){
+	push @parts, substr($tmp, 0, 3);
+	$tmp = substr($tmp, 3);
+    }
+
+    my $fname = $wof_id . ".geojson";
+    my $tree = join("/", @parts);
+
+    my $path = "/usr/local/mapzen/whosonfirst-data/data/" . $tree . "/" . $fname;
+
+    my $text = read_file($path);
+    my $data = decode_json($text);
+
+    my $props = $data->{'properties'};
+    return $props;
+}
+
+sub reversegeo {
+    my $target = shift;
+    my $lat = shift;
+    my $lon = shift;
+
+    my $url = "http://localhost:1111/$target?latitude=$lat&longitude=$lon";
+    # print "$url\n";
+
+    my $rsp = get($url);
+
+    if ($rsp eq ""){
+	return -1;
+    }
+
+    my $data = decode_json($rsp);
+
+    if (scalar(@$data) eq 0){
+	return -1;
+    }
+
+    return $data->[0]->{'Id'};
+}
+
+sub concordance {
+    my $gnid = shift;
+
+    my $rsp = get("http://localhost:10001?k=gn:id&v=" . $gnid);
+
+    if ($rsp eq "") {
+	return -1;
+    }
+
+    my $data = decode_json($rsp);
+
+    my $first = $data->[0];
+    return $first->{'wof:id'};
+}
