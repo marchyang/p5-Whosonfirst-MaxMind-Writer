@@ -157,7 +157,7 @@ return 1;
 
 __END__
 
-# in-progress types maps the standard (free) GeoIP databases...
+# types maps the standard (free) GeoIP country databases...
 # note the inclusion of whosonfirst_id
 
     my %types = (
@@ -173,8 +173,10 @@ __END__
 	'names' => 'map',
 	'traits' => 'map',	# ?????
 	'registered_country' => 'map',
+	'represented_country' => 'map',
 	'subdivisions' => [ 'array', 'map' ],
 	'time_zone' => 'utf8_string',
+	'type' => 'utf8_string',
 	'whosonfirst_id' => 'uint64',
 	'is_satellite_provider' => 'boolean',
 	'is_anonymous_proxy' => 'boolean'
