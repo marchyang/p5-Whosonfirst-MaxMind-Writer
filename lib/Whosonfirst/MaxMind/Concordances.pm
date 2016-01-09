@@ -41,6 +41,7 @@ sub lookup {
     my $src = shift;
     my $id = shift;
 
+    # PLEASE USE $self PROPS
     # PLEASE MAKE ME A PROPER URI THING
 
     my $uri = "http://localhost:8228?k=" . $src . "id&v=" . $id;

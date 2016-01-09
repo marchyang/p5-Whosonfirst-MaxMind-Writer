@@ -42,7 +42,7 @@ sub lookup {
     my $lon = shift;
     my $pt = shift;
 
-    # PLEASE USER $self PROPS
+    # PLEASE USE $self PROPS
     # PLEASE MAKE ME A PROPER URI THING
 
     my $uri = "http://localhost:1111/$pt?latitude=$lat&longitude=$lon";
