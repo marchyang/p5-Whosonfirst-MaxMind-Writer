@@ -112,8 +112,8 @@ sub build_wof_mmdb {
 
     my @placetypes = ("locality", "localadmin", "region", "macroregion", "disputed", "country", "continent");
 
-    my $pip = Whosonfirst::MaxMind::PointInPoly->new()
-    my $wof = Whosonfirst::MaxMind::Data->new()
+    my $pip = Whosonfirst::MaxMind::PointInPoly->new();
+    my $wof = Whosonfirst::MaxMind::Data->new();
 
     foreach my $row (@$reader){
 
@@ -196,7 +196,7 @@ sub build_wof_mmdb {
 		$data{$k} = $v;
 	    }
 	    
-	    $tree->insert_network($network, \%deta);
+	    $tree->insert_network($network, \%data);
 	}
 
     }

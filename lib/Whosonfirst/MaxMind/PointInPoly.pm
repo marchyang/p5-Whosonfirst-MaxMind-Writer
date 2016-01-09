@@ -4,7 +4,25 @@ use LWP::Simple;
 use JSON::XS;
 use Memoize;
 
-memoize('_query');
+memoize('_pip');
+
+sub _pip {
+    my $uri = shift;
+
+    my $rsp = get($uri);
+
+    if ($rsp eq ""){
+	return -1;
+    }
+
+    my $data = decode_json($rsp);
+
+    if (scalar(@$data) eq 0){
+	return -1;
+    }
+
+    return $data->[0]->{'Id'};
+}
 
 =head1 PACKAGE METHODS
 
@@ -47,24 +65,6 @@ sub lookup {
 
     my $uri = "http://localhost:1111/$pt?latitude=$lat&longitude=$lon";
     return _pip($uri);
-}
-
-sub _pip {
-    my $uri = shift;
-
-    my $rsp = get($uri);
-
-    if ($rsp eq ""){
-	return -1;
-    }
-
-    my $data = decode_json($rsp);
-
-    if (scalar(@$data) eq 0){
-	return -1;
-    }
-
-    return $data->[0]->{'Id'};
 }
 
 return 1;
