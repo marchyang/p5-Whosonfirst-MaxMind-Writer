@@ -1,5 +1,7 @@
 package Whosonfirst::MaxMind::Types;
 
+# https://metacpan.org/pod/MaxMind::DB::Writer::Tree#DATA-TYPES
+
 use strict;
 use warnings;
 use utf8;
