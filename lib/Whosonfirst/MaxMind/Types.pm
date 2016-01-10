@@ -18,6 +18,7 @@ sub maxmind {
     my $pkg = shift;
 
     my %types = (
+	'city' => 'map',
 	'country' => 'map',
 	'continent' => 'map',
 	'continent_code' => 'utf8_string',

@@ -86,6 +86,8 @@ sub update_maxmind_mmdb {
 
     $reader->iterate_search_tree($callback);
 
+    # sanity check tree here?
+
     open my $fh, '>:raw', $dest;
     $tree->write_tree( $fh );
     close $fh;
@@ -122,8 +124,8 @@ sub build_wof_mmdb {
 
 	my $gnid = $row->{'geoname_id'} || 0;
 
-	my $lat = $row->{'latitude'};
-	my $lon = $row->{'longitude'};
+	my $lat = $row->{'latitude'} || 0.0;
+	my $lon = $row->{'longitude'} || 0.0;
 
 	my $wof_id = -1;
 
@@ -164,8 +166,8 @@ sub build_wof_mmdb {
 
 	foreach my $h (@$hiers){
 
-	    my $pt = $props->{'wof:placetype'};
-	    my $id = $props->{'wof:id'};
+	    my $pt = $props->{'wof:placetype'} || "unknown";
+	    my $id = $props->{'wof:id'} || 0;
 
 	    my %data = (
 		'geoname_id' => $gnid,
@@ -174,15 +176,12 @@ sub build_wof_mmdb {
 		'placetype' => $pt,
 		'mm_latitude' => $lat,
 		'mm_longitude' => $lon,
-		'geom_bbox' => $props->{'geom:bbox'},
-		'geom_latitude' => $props->{'geom:latitude'},
-		'geom_longitude' => $props->{'geom:longitude'},
+		'geom_bbox' => $props->{'geom:bbox'} || "",
+		'geom_latitude' => $props->{'geom:latitude'} || 0.0,
+		'geom_longitude' => $props->{'geom:longitude'} || 0.0,
+		'lbl_latitude' => $props->{'lbl:latitude'} || 0.0,
+		'lbl_longitude' => $props->{'lbl:longitude'} || 0.0,
 		);
-
-	    if (($props->{'lbl:latitude'}) && ($props->{'lbl:longitude'})){
-		$data{'lbl_latitude'} = $props->{'lbl:latitude'};
-		$data{'lbl_longitude'} = $props->{'lbl:longitude'};
-	    }
 
 	    foreach my $t (@placetypes){
 
@@ -200,6 +199,8 @@ sub build_wof_mmdb {
 	}
 
     }
+
+    # sanity check tree here?
 
     open my $fh, '>:raw', $dest;
     $tree->write_tree( $fh );
