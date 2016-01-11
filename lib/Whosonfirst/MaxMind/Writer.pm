@@ -115,6 +115,7 @@ sub build_wof_mmdb {
     my @placetypes = ("locality", "localadmin", "region", "macroregion", "disputed", "country", "continent");
 
     my $pip = Whosonfirst::MaxMind::PointInPoly->new();
+    my $concordances = Whosonfirst::MaxMind::Concordances->new();
     my $wof = Whosonfirst::MaxMind::Data->new();
 
     foreach my $row (@$reader){
@@ -139,7 +140,7 @@ sub build_wof_mmdb {
 	}
 
 	if ($wof_id == -1){
-	    $wof_id = concordance($gnid);
+	    $wof_id = $concordances->lookup('gn:id', $gnid);
 	}
 
 	if ($wof_id == -1){
