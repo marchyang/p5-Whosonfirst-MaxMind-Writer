@@ -21,6 +21,7 @@ sub maxmind {
 	'city' => 'map',
 	'country' => 'map',
 	'continent' => 'map',
+	'postal' => 'map',	# maybe?
 	'continent_code' => 'utf8_string',
 	'code' => 'utf8_string',
 	'geoname_id' => 'uint32',
