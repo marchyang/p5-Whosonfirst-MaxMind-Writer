@@ -61,6 +61,10 @@ sub reporter {
 	'geoname_id' => 'uint64',
 	);
 
+    my %arrays = (
+	'HASH' => 'map',
+	);
+
     my $isa = ref($subject) || ref(\$subject);
     
     if ($isa eq "HASH"){
@@ -82,9 +86,8 @@ sub reporter {
 	    my $first = $subject->[0];
 	    my $first_isa = ref($first) || ref(\$first);
 
-	    print "$parent is ARRAY first is $first_isa\n";
-	
-	    $report->{$parent} = [ 'array', $first_isa ];
+	    my $type = $arrays{$first_isa} || $first_isa;
+	    $report->{$parent} = [ 'array', $type ];
 	}
 
 	foreach my $item (@$subject){
