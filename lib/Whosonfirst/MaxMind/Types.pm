@@ -26,6 +26,7 @@ sub maxmind {
 	'code' => 'utf8_string',
 	'geoname_id' => 'uint32',
 	'iso_code' => 'utf8_string',
+	'metro_code' => 'utf8_string',
 	'location' => 'map',
 	'latitude' => 'double',
 	'longitude' => 'double',
