@@ -112,3 +112,36 @@ sub reporter {
 
 }
 
+__END__
+
+./scripts/inspect-mmdb.pl -s /usr/local/mapzen/maxmind-data/GeoLite2-City.mmdb
+    $VAR1 = { 
+          'es' => 'map',
+          'ru' => 'map',
+          'geoname_id' => 'map',
+          'ja' => 'map',
+          'names' => 'map',
+          'metro_code' => 'map',
+          'code' => 'map',
+          'de' => 'map',
+          'en' => 'map',
+          'longitude' => 'map',
+          'registered_country' => 'map',
+          'time_zone' => 'map',
+          'iso_code' => 'map',
+          'type' => 'map',
+          'country' => 'map',
+          'pt-BR' => 'map',
+          'traits' => 'map',
+          'postal' => 'map',
+          'city' => 'map',
+          'continent' => 'map',
+          'latitude' => 'map',
+          'represented_country' => 'map',
+          'fr' => 'map',
+          'subdivisions' => 'map',
+          'is_satellite_provider' => 'map',
+          'is_anonymous_proxy' => 'map',
+          'zh-CN' => 'map',
+          'location' => 'map'
+};
