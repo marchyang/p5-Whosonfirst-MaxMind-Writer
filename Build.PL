@@ -4,8 +4,8 @@ use strict;
 use Module::Build;
 
 my $build = Module::Build->new(module_name => 'Whosonfirst::MaxMind::Writer',
-			              # dist_author
-			              # dist_abstract
+			              dist_author => 'Mapzen',
+			              dist_abstract => 'Perl libraries for working with MaxMindDB databases and Who\'s On First document',
 			              dist_version_from => 'lib/Whosonfirst/MaxMind/Writer.pm',
 			              license           => 'perl',
 			       requires => {

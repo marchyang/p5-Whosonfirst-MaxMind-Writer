@@ -1,0 +1,51 @@
+{
+   "abstract" : "Perl libraries for working with MaxMindDB databases and Who's On First document",
+   "author" : [
+      "Mapzen"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.150005",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Whosonfirst-MaxMind-Writer",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::Simple" : "0.47"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Data::IEEE754" : "0",
+            "Digest::SHA1" : "0",
+            "Math::Int128" : "0",
+            "Math::Int64" : "0",
+            "MaxMind::DB::Common" : "0",
+            "Moose" : "0",
+            "MooseX::Params::Validate" : "0",
+            "MooseX::StrictConstructor" : "0",
+            "Net::Works" : "0",
+            "Sereal::Encoder" : "0",
+            "namespace::autoclean" : "0"
+         }
+      }
+   },
+   "provides" : {
+      "Whosonfirst::MaxMind::Writer" : {
+         "file" : "lib/Whosonfirst/MaxMind/Writer.pm"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ]
+   },
+   "version" : "0",
+   "x_serialization_backend" : "JSON::PP version 2.27203"
+}

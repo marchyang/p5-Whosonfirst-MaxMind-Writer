@@ -3,4 +3,5 @@ Changes
 lib/Whosonfirst/MaxMind/Writer.pm
 MANIFEST
 MANIFEST.SKIP
-
+MYMETA.yaml
+MYMETA.json
