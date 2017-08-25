@@ -19,9 +19,10 @@ sub main {
 
     my $src = $opts{'s'};
     my $dest = $opts{'d'};
+    my $lookup = $opts{'l'};
 
-    if ((! $src) || (! $dest)){
-	print "source or destination parameters are missing\n";
+    if ((! $src) || (! $dest) || (! $lookup)){
+	print "source or destination or lookup parameters are missing\n";
 	return 0;
     }
 
@@ -37,7 +38,7 @@ sub main {
 	record_size => 32,
     };
 
-    my $ok = Whosonfirst::MaxMind::Writer->build_wof_mmdb($src, $dest, $meta);
+    my $ok = Whosonfirst::MaxMind::Writer->build_wof_mmdb($src, $dest, $lookup, $meta);
     
     print "done ($ok)";
     return $ok;

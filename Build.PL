@@ -20,6 +20,8 @@ my $build = Module::Build->new(module_name => 'Whosonfirst::MaxMind::Writer',
 				         'MooseX::StrictConstructor'   => '0',
 				         'MooseX::Params::Validate'   => '0',
 				         'Net::Works'   => '0',
+					 'JSON::XS' => '0',
+					 'Text::CSV_XS' => '0'
 			       },
 			       build_requires => {
 				      'Test::Simple' => '0.47',

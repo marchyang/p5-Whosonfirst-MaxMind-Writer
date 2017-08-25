@@ -37,9 +37,11 @@ sub update_maxmind_mmdb {
     my $pkg = shift;
     my $src = shift;
     my $dest = shift;
+    my $lookup = shift;
 
-    # where $src is something like geoip.mmdb
-    # and $dest is something like wof.mmdb
+    # $src is something like geoip.mmdb
+    # $dest is something like wof.mmdb
+    # $lookup is something produced by https://github.com/whosonfirst/go-whosonfirst-mmdb#wof-mmdb-lookup
 
     my $reader = MaxMind::DB::Reader->new('file' => $src);
     my $meta = $reader->metadata();
@@ -99,10 +101,12 @@ sub build_wof_mmdb {
     my $pkg = shift;
     my $src = shift;
     my $dest = shift;
+    my $lookup = shift;
     my $meta = shift;
 
-    # where source is something like GeoLite2-Country-Blocks-IPv4.csv
-    # and dest is something like wof.mmdb
+    # $src is something like GeoLite2-Country-Blocks-IPv4.csv
+    # $dest is something like wof.mmdb
+    # $lookup is something produced by https://github.com/whosonfirst/go-whosonfirst-mmdb#wof-mmdb-lookup
 
     my $types = Whosonfirst::MaxMind::Types->whosonfirst();
 
@@ -112,6 +116,9 @@ sub build_wof_mmdb {
     my $tree = MaxMind::DB::Writer::Tree->new(%$meta);
 
     my $reader = Text::CSV_XS::csv(in => $src, headers => "auto");
+
+    my $json = new JSON::XS;
+    my $lookup = $json->decode($lookup);
 
     foreach my $row (@$reader){
 
@@ -124,11 +131,9 @@ sub build_wof_mmdb {
 	my $lon = $row->{'longitude'} || 0.0;
 
 	my $wof_id = -1;
+	my $wof_data = $lookup->{$gnid};
 
-	# LOOKUP WOF RECORD FOR $gnid HERE
-	my $wof_data = {};
-	
-	if ($wof_id == -1){
+	if (! $wof_data){
 
 	    my %data = (
 		'geoname_id' => $gnid,
@@ -141,43 +146,16 @@ sub build_wof_mmdb {
 	    next;
 	}
 
-	# SEE THIS - UNDER THE HOOD WE END UP memoize-ing
-	# EVERYTHING INCLUDING THE GEOMETRY. PLEASE MAKE
-	# THIS LESS STUPID... (20160109/thisisaaronland)
-
-
-	my $props = $wof_data->{'properties'};
-	my $hiers = $props->{'wof:hierarchy'};
-
-	foreach my $h (@$hiers){
-
-	    my $pt = $props->{'wof:placetype'} || "unknown";
-	    my $id = $props->{'wof:id'} || 0;
+	foreach my $extra (@$wof_data){
 
 	    my %data = (
 		'geoname_id' => $gnid,
-		'whosonfirst_id' => $id,
-		'whosonfirst_name' => $props->{'wof:name'} || "Un-named $pt #$id",
-		'whosonfirst_placetype' => $pt,
 		'maxmind_latitude' => $lat,
-		'maxmin_longitude' => $lon,
-		'geom_bbox' => $props->{'geom:bbox'} || "",
-		'geom_latitude' => $props->{'geom:latitude'} || 0.0,
-		'geom_longitude' => $props->{'geom:longitude'} || 0.0,
-		'label_latitude' => $props->{'lbl:latitude'} || 0.0,
-		'label_longitude' => $props->{'lbl:longitude'} || 0.0,
+		'maxmind_longitude' => $lon,
 		);
 
-	    foreach my $t (@placetypes){
-
-		my $k = $t . "_id";
-		my $v = $h->{$k} || 0;
-
-		if ($v == -1){
-		    $v = 0;	# grrrrnnn
-		}
-		
-		$data{$k} = $v;
+	    foreach my $k (keys %{$extra}) {
+		$data[$k] = $extra->{$k};
 	    }
 	    
 	    $tree->insert_network($network, \%data);
