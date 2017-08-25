@@ -103,6 +103,9 @@ sub build_wof_mmdb {
     my $dest = shift;
     my $meta = shift;
 
+    # where source is something like GeoLite2-Country-Blocks-IPv4.csv
+    # and dest is something like wof.mmdb
+
     my $types = Whosonfirst::MaxMind::Types->whosonfirst();
 
     $meta->{'map_key_type_callback'} = sub { $types->{ $_[0] } };
