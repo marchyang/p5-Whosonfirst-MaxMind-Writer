@@ -15,7 +15,7 @@ sub main {
 
     my %opts = ();
 
-    getopts('s:d:', \%opts);
+    getopts('s:d:l:', \%opts);
 
     my $src = $opts{'s'};
     my $dest = $opts{'d'};

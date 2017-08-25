@@ -37,9 +37,8 @@ sub maxmind {
 	'subdivisions' => [ 'array', 'map' ],
 	'time_zone' => 'utf8_string',
 	'type' => 'utf8_string',
-	'whosonfirst_id' => 'uint64',
 	'is_satellite_provider' => 'boolean',
-	'is_anonymous_proxy' => 'boolean'
+	'is_anonymous_proxy' => 'boolean',
     );
 
     # for my $lang (@{$meta->languages()} ) {
@@ -57,25 +56,18 @@ sub whosonfirst {
     my $pkg = shift;
 
     my %types = (
-	'whosonfirst_id' => 'uint64',
-	'geoname_id' => 'uint64',
-	'name' => 'utf8_string',
-	'placetype' => 'utf8_string',
-	'neighbourhood_id' => 'uint64',
-	'locality_id' => 'uint64',
-	'localadmin_id' => 'uint64',
-	'region_id' => 'uint64',
-	'macroregion_id' => 'uint64',
-	'disputed_id' => 'uint64',
-	'country_id' => 'uint64',
-	'continent_id' => 'uint64',
-	'mm_latitude' => 'double',
-	'mm_longitude' => 'double',
-	'geom_latitude' => 'double',
-	'geom_longitude' => 'double',
-	'geom_bbox' => 'utf8_string',
-	'lbl_latitude' => 'double',
-	'lbl_longitude' => 'double',
+	'gn:id' => 'uint64',
+	'mm:latitude' => 'double',
+	'mm:longitude' => 'double',
+	'wof:id' => 'uint64',
+	'wof:name' => 'utf8_string',
+	'wof:placetype' => 'utf8_string',
+	'wof:latitude' => 'double',
+	'wof:longitude' => 'double',
+	'geom:min_latitude' => 'double',
+	'geom:min_longitude' => 'double',
+	'geom:max_latitude' => 'double',
+	'geom:max_longitude' => 'double',
     );
 
     return \%types;
@@ -83,7 +75,7 @@ sub whosonfirst {
 
 =head1 VERSION
 
-0.1
+0.2
 
 =head1 DATE
 

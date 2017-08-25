@@ -10,6 +10,8 @@ use Net::Works::Address;
 
 use File::Slurp;
 use Text::CSV_XS;
+use JSON::XS;
+use Data::Dumper;
 
 use Whosonfirst::MaxMind::Types;
 
@@ -94,6 +96,9 @@ sub build_wof_mmdb {
     # $dest is something like wof.mmdb
     # $lookup is something produced by https://github.com/whosonfirst/go-whosonfirst-mmdb#wof-mmdb-lookup
 
+    # remember that anything you push in to %data below needs to be
+    # defined in Types.pm (20170824/thisisaaronland)
+
     my $types = Whosonfirst::MaxMind::Types->whosonfirst();
 
     $meta->{'map_key_type_callback'} = sub { $types->{ $_[0] } };
@@ -116,16 +121,15 @@ sub build_wof_mmdb {
 	my $lat = $row->{'latitude'} || 0.0;
 	my $lon = $row->{'longitude'} || 0.0;
 
-	my $wof_id = -1;
 	my $wof_data = $lookup_table->{$gnid};
 
 	if (! $wof_data){
 
 	    my %data = (
-		'geoname_id' => $gnid,
-		'whosonfirst_id' => 0,
-		'mm_latitude' => $lat,
-		'mm_longitude' => $lon,
+		'gn:id' => $gnid,
+		'wof:id' => 0,
+		'mm:latitude' => $lat,
+		'mm:longitude' => $lon,
 		);
 	    
 	    $tree->insert_network( $network, \%data);
@@ -135,15 +139,15 @@ sub build_wof_mmdb {
 	foreach my $extra (@$wof_data){
 
 	    my %data = (
-		'geoname_id' => $gnid,
-		'maxmind_latitude' => $lat,
-		'maxmind_longitude' => $lon,
+		'gn:id' => $gnid,
+		'mm:latitude' => $lat,
+		'mm:latitude' => $lon,
 		);
 
 	    foreach my $k (keys %{$extra}) {
 		$data{$k} = $extra->{$k};
 	    }
-	    
+
 	    $tree->insert_network($network, \%data);
 	}
 
