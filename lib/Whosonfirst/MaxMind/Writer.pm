@@ -4,25 +4,11 @@ use strict;
 use warnings;
 use utf8;
 
-# PLEASE MAKE SURE THESE ARE ALL LISTED AS DEPENDECIES
-# IN Build.PL
-#
-# namespace::autoclean
-# Math::Int64
-# Math::Int128
-# MaxMind::DB::Common
-# Data::IEEE754
-# Digest::SHA1
-# Sereal::Encoder
-# Moose
-# MooseX::StrictConstructor
-# MooseX::Params::Validate
-# Net::Works
-
 use MaxMind::DB::Writer::Tree;
 use Net::Works::Network;
 use Net::Works::Address;
 
+use File::Slurp;
 use Text::CSV_XS;
 
 use Whosonfirst::MaxMind::Types;
@@ -118,7 +104,7 @@ sub build_wof_mmdb {
     my $reader = Text::CSV_XS::csv(in => $src, headers => "auto");
 
     my $json = new JSON::XS;
-    my $lookup = $json->decode($lookup);
+    my $lookup_table = $json->decode(read_file($lookup));
 
     foreach my $row (@$reader){
 
@@ -131,7 +117,7 @@ sub build_wof_mmdb {
 	my $lon = $row->{'longitude'} || 0.0;
 
 	my $wof_id = -1;
-	my $wof_data = $lookup->{$gnid};
+	my $wof_data = $lookup_table->{$gnid};
 
 	if (! $wof_data){
 
@@ -155,7 +141,7 @@ sub build_wof_mmdb {
 		);
 
 	    foreach my $k (keys %{$extra}) {
-		$data[$k] = $extra->{$k};
+		$data{$k} = $extra->{$k};
 	    }
 	    
 	    $tree->insert_network($network, \%data);
