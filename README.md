@@ -2,6 +2,15 @@
 
 Perl libraries and tools for generating MaxMindDB compatible databases from Who's On First data. This still needs to be documented properly.
 
+## Setup
+
+```
+sudo perl ./Build.PL
+sudo ./Build build
+sudo ./Build installdeps
+sudo ./Build install
+```
+
 ## See also
 
 * https://whosonfirst.mapzen.com/mmdb/
