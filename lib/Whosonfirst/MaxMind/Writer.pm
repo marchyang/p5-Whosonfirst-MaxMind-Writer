@@ -26,9 +26,6 @@ use Net::Works::Address;
 use Text::CSV_XS;
 
 use Whosonfirst::MaxMind::Types;
-use Whosonfirst::MaxMind::Concordances;
-use Whosonfirst::MaxMind::PointInPoly;
-use Whosonfirst::MaxMind::Data;		# REMEMBER - terrible package name...
 
 =head1 PACKAGE METHODS
 
@@ -40,6 +37,9 @@ sub update_maxmind_mmdb {
     my $pkg = shift;
     my $src = shift;
     my $dest = shift;
+
+    # where $src is something like geoip.mmdb
+    # and $dest is something like wof.mmdb
 
     my $reader = MaxMind::DB::Reader->new('file' => $src);
     my $meta = $reader->metadata();
@@ -59,8 +59,6 @@ sub update_maxmind_mmdb {
 	record_size => $meta->record_size(),
 	);
 
-    my $concordances = Whosonfirst::MaxMind::Concordances->new();
-
     my $callback = sub {
 	my $ip_as_integer = shift;
 	my $mask_length   = shift;
@@ -76,9 +74,9 @@ sub update_maxmind_mmdb {
 	    }
 
 	    my $gnid = $data->{ $pl }->{ 'geoname_id' };
-	    my $wofid = $concordances->lookup('gn:id', $gnid);
-	    
-	    $data->{ $pl }->{ 'whosonfirst_id' } = $wofid;
+
+	    # LOOKUP DATA FOR $gnid HERE	    
+	    # $data->{ $pl }->{ 'whosonfirst_id' } = $wofid;
 	}
 
 	$tree->insert_network($network, $data);
@@ -115,12 +113,6 @@ sub build_wof_mmdb {
 
     my $reader = Text::CSV_XS::csv(in => $src, headers => "auto");
 
-    my @placetypes = ("locality", "localadmin", "region", "macroregion", "disputed", "country", "continent");
-
-    my $pip = Whosonfirst::MaxMind::PointInPoly->new();
-    my $concordances = Whosonfirst::MaxMind::Concordances->new();
-    my $wof = Whosonfirst::MaxMind::Data->new();
-
     foreach my $row (@$reader){
 
 	my $net = $row->{'network'};
@@ -133,19 +125,9 @@ sub build_wof_mmdb {
 
 	my $wof_id = -1;
 
-	foreach my $pt (@placetypes){
-
-	    $wof_id = $pip->lookup($lat, $lon, $pt);
-
-	    if ($wof_id != -1){
-		last;
-	    }
-	}
-
-	if ($wof_id == -1){
-	    $wof_id = $concordances->lookup('gn:id', $gnid);
-	}
-
+	# LOOKUP WOF RECORD FOR $gnid HERE
+	my $wof_data = {};
+	
 	if ($wof_id == -1){
 
 	    my %data = (
@@ -163,7 +145,6 @@ sub build_wof_mmdb {
 	# EVERYTHING INCLUDING THE GEOMETRY. PLEASE MAKE
 	# THIS LESS STUPID... (20160109/thisisaaronland)
 
-	my $wof_data = $wof->load($wof_id);
 
 	my $props = $wof_data->{'properties'};
 	my $hiers = $props->{'wof:hierarchy'};
@@ -176,15 +157,15 @@ sub build_wof_mmdb {
 	    my %data = (
 		'geoname_id' => $gnid,
 		'whosonfirst_id' => $id,
-		'name' => $props->{'wof:name'} || "Un-named $pt #$id",
-		'placetype' => $pt,
-		'mm_latitude' => $lat,
-		'mm_longitude' => $lon,
+		'whosonfirst_name' => $props->{'wof:name'} || "Un-named $pt #$id",
+		'whosonfirst_placetype' => $pt,
+		'maxmind_latitude' => $lat,
+		'maxmin_longitude' => $lon,
 		'geom_bbox' => $props->{'geom:bbox'} || "",
 		'geom_latitude' => $props->{'geom:latitude'} || 0.0,
 		'geom_longitude' => $props->{'geom:longitude'} || 0.0,
-		'lbl_latitude' => $props->{'lbl:latitude'} || 0.0,
-		'lbl_longitude' => $props->{'lbl:longitude'} || 0.0,
+		'label_latitude' => $props->{'lbl:latitude'} || 0.0,
+		'label_longitude' => $props->{'lbl:longitude'} || 0.0,
 		);
 
 	    foreach my $t (@placetypes){
@@ -215,7 +196,7 @@ sub build_wof_mmdb {
 
 =head1 VERSION
 
-0.1
+0.2
 
 =head1 DATE
 
@@ -230,7 +211,7 @@ Mapzen
 
 =head1 LICENSE
 
-Copyright (c) 2015, Mapzen
+Copyright (c) 2015-2017, Mapzen
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
