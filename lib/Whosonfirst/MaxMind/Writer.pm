@@ -94,7 +94,7 @@ sub build_wof_mmdb {
 
     # $src is something like GeoLite2-Country-Blocks-IPv4.csv
     # $dest is something like wof.mmdb
-    # $lookup is something produced by https://github.com/whosonfirst/go-whosonfirst-mmdb#wof-mmdb-lookup
+    # $lookup is something produced by https://github.com/whosonfirst/go-whosonfirst-mmdb#wof-mmdb-prepare
 
     # remember that anything you push in to %data below needs to be
     # defined in Types.pm (20170824/thisisaaronland)
@@ -136,7 +136,13 @@ sub build_wof_mmdb {
 	    next;
 	}
 
-	foreach my $extra (@$wof_data){
+	# See what's going on here... it's all a bit in flux still
+	# while we figure out what an "SPR" for IP lookups looks like
+	# and as of this writing it's just a JSON encoded SPR from
+	# go-whosonfirst-geojson-v2/feature, and that will probably
+	# change (20170828/thisisaaronland)
+
+#	foreach my $extra (@$wof_data){
 
 	    my %data = (
 		'gn:id' => $gnid,
@@ -144,12 +150,14 @@ sub build_wof_mmdb {
 		'mm:latitude' => $lon,
 		);
 
-	    foreach my $k (keys %{$extra}) {
-		$data{$k} = $extra->{$k};
-	    }
+	    $data{'spr'} = $json->encode($wof_data);
+
+#	    foreach my $k (keys %{$extra}) {
+#		$data{$k} = $extra->{$k};
+#	    }
 
 	    $tree->insert_network($network, \%data);
-	}
+#	}
 
     }
 

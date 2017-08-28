@@ -62,12 +62,16 @@ sub whosonfirst {
 	'wof:id' => 'uint64',
 	'wof:name' => 'utf8_string',
 	'wof:placetype' => 'utf8_string',
-	'wof:latitude' => 'double',
-	'wof:longitude' => 'double',
-	'geom:min_latitude' => 'double',
-	'geom:min_longitude' => 'double',
-	'geom:max_latitude' => 'double',
-	'geom:max_longitude' => 'double',
+	'wof:country' => 'utf8_string',
+	'wof:repo' => 'utf8_string',
+	'wof:path' => 'utf8_string',
+	'mz:latitude' => 'double',
+	'mz:longitude' => 'double',
+	'mz:min_latitude' => 'double',
+	'mz:min_longitude' => 'double',
+	'mz:max_latitude' => 'double',
+	'mz:max_longitude' => 'double',
+	'spr' => 'utf8_string',
     );
 
     return \%types;
