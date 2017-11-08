@@ -3,3 +3,4 @@ blib
 _build
 Build
 *.mmdb
+*.json

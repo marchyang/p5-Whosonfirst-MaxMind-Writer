@@ -3,34 +3,34 @@ abstract: "Perl libraries for working with MaxMindDB databases and Who's On Firs
 author:
   - Mapzen
 build_requires:
-  Test::Simple: '0.47'
+  Test::Simple: 0.47
 dynamic_config: 0
-generated_by: 'Module::Build version 0.4224, CPAN::Meta::Converter version 2.150010'
+generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: '1.4'
+  version: 1.4
 name: Whosonfirst-MaxMind-Writer
 provides:
   Whosonfirst::MaxMind::Writer:
     file: lib/Whosonfirst/MaxMind/Writer.pm
+    version: 0
 requires:
-  Data::IEEE754: '0'
-  Digest::SHA1: '0'
-  File::Slurp: '0'
-  JSON::XS: '0'
-  Math::Int128: '0'
-  Math::Int64: '0'
-  MaxMind::DB::Common: '0'
-  MaxMind::DB::Writer: '0'
-  Moose: '0'
-  MooseX::Params::Validate: '0'
-  MooseX::StrictConstructor: '0'
-  Net::Works: '0'
-  Sereal::Encoder: '0'
-  Text::CSV_XS: '0'
-  namespace::autoclean: '0'
+  Data::IEEE754: 0
+  Digest::SHA1: 0
+  File::Slurp: 0
+  JSON::XS: 0
+  Math::Int128: 0
+  Math::Int64: 0
+  MaxMind::DB::Common: 0
+  MaxMind::DB::Writer: 0
+  Moose: 0
+  MooseX::Params::Validate: 0
+  MooseX::StrictConstructor: 0
+  Net::Works: 0
+  Sereal::Encoder: 0
+  Text::CSV_XS: 0
+  namespace::autoclean: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: '0'
-x_serialization_backend: 'CPAN::Meta::YAML version 0.018'
+version: 0

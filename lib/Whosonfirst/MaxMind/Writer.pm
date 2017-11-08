@@ -45,7 +45,11 @@ sub update_maxmind_mmdb {
 	description => { en => 'WOF' },
 	ip_version => $meta->ip_version(),
 	map_key_type_callback => sub { $types->{ $_[0] } },
-	merge_record_collisions => 1,
+	# deprecated as 201711 (at least)	
+	# merge_record_collisions => 1,
+	# is this correct? I have no idea... (20171106/thisisaaronland)
+	# https://github.com/maxmind/MaxMind-DB-Writer-perl/search?p=2&q=merge_strategy&type=&utf8=%E2%9C%93
+	merge_strategy => 'recurse',
 	record_size => $meta->record_size(),
 	);
 
