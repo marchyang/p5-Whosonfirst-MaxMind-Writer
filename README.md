@@ -25,13 +25,13 @@ The first two steps are to prepare the raw MaxMind GeoLite2 data and to establis
 ```
 /usr/local/py-mapzen-whosonfirst-maxmind/scripts/wof-mmdb-build-concordances --apikey mapzen-*** --countries /usr/local/data/whosonfirst-data/meta/wof-country-latest.csv GeoLite2-Country-CSV_20170801/GeoLite2-Country-Locations-en.csv > /usr/local/maxmind-data/201711/GeoLite2-City-CSV_20171003/wof-geonames.csv
 
-./bin/wof-mmdb-prepare -concordances /usr/local/maxmind-data/201711/GeoLite2-City-CSV_20171003/wof-geonames.csv /usr/local/maxmind-data/201711/GeoLite2-City-CSV_20171003/wof-geonames-lookup.json
+/usr/local/go-whosonfirst-mmdb/bin/wof-mmdb-prepare -concordances /usr/local/maxmind-data/201711/GeoLite2-City-CSV_20171003/wof-geonames.csv /usr/local/maxmind-data/201711/GeoLite2-City-CSV_20171003/wof-geonames-lookup.json
 ```
 
 Then you use this package to generate a new `mmdb` database.
 
 ```
-perl /usr/local/p5-Whosonfirst-MaxMind-Writer/scripts/build-wof-mmdb.pl -s /usr/local/maxmind-data/201711/GeoLite2-City-CSV_20171003/GeoLite2-City-Blocks-IPv4.csv -d cities.mmdb -l maxmind-data/201711/GeoLite2-City-CSV_20171003/wof-geonames-lookup.json
+/usr/local/p5-Whosonfirst-MaxMind-Writer/scripts/build-wof-mmdb.pl -s /usr/local/maxmind-data/201711/GeoLite2-City-CSV_20171003/GeoLite2-City-Blocks-IPv4.csv -d cities.mmdb -l maxmind-data/201711/GeoLite2-City-CSV_20171003/wof-geonames-lookup.json
 ```
 
 Finally you can test the database with tools in the `go-whosonfirst-mmdb` package.
