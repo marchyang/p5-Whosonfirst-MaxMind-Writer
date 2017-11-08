@@ -11,14 +11,14 @@ sudo ./Build installdeps
 sudo ./Build install
 ```
 
+## Usage
+
+_This section is incomplete._
+
 This package is meant to be used in concert with the following other (not-Perl) packages:
 
 * https://github.com/whosonfirst/py-mapzen-whosonfirst-maxmind
 * https://github.com/whosonfirst/go-whosonfirst-mmdb
-
-## Usage
-
-This section is incomplete.
 
 The first two steps are to prepare the raw MaxMind GeoLite2 data and to establish concordances with Who's On First. These two tools will/should probably be merged in to one but today they are not...
 
